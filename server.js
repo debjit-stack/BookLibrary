@@ -11,9 +11,10 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Import middlewares
-const errorMiddleware = require(path.join(__dirname, 'src', 'middlewares', 'errorMiddleware'));
-const loggerMiddleware = require(path.join(__dirname, 'src', 'middlewares', 'loggerMiddleware'));
+// --- FIX 1: Correctly import middleware functions ---
+// By using destructuring {}, we pull the specific functions out of the imported modules.
+const { errorMiddleware } = require(path.join(__dirname, 'src', 'middlewares', 'errorMiddleware'));
+const { loggerMiddleware } = require(path.join(__dirname, 'src', 'middlewares', 'loggerMiddleware'));
 
 // Import routes
 const bookRoutes = require(path.join(__dirname, 'src', 'routes', 'bookRoutes'));
@@ -48,7 +49,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
-app.use(loggerMiddleware);
+app.use(loggerMiddleware); // This now correctly uses the imported function
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -76,22 +77,22 @@ app.use('*', (req, res) => {
 });
 
 // Error handler
-app.use(errorMiddleware);
+app.use(errorMiddleware); // This now correctly uses the imported function
 
 // DB connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/book-library', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  console.log('✅ Connected to MongoDB');
-  app.listen(PORT, () => {
-    console.log(`🚀 Server listening on port ${PORT}`);
-    console.log(`📘 API Base: http://localhost:${PORT}/api`);
+// --- FIX 2: Removed deprecated Mongoose options ---
+// The options `useNewUrlParser` and `useUnifiedTopology` are no longer needed in Mongoose v7+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/book-library')
+  .then(() => {
+    console.log('✅ Connected to MongoDB');
+    app.listen(PORT, () => {
+      console.log(`🚀 Server listening on port ${PORT}`);
+      console.log(`📘 API Base: http://localhost:${PORT}/api`);
+    });
+  }).catch((error) => {
+    console.error('❌ MongoDB connection failed:', error.message);
+    process.exit(1);
   });
-}).catch((error) => {
-  console.error('❌ MongoDB connection failed:', error.message);
-  process.exit(1);
-});
 
 // Graceful shutdown
 const shutdown = () => {
