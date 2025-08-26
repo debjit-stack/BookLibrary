@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Library</title>
+    <link rel="icon" href="https://placehold.co/32x32/6a11cb/ffffff?text=B" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-book-open"></i> Book Library</h1>
+                <p>Manage your book collection with a modern interface</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- AI Generation Section -->
+            <section class="ai-generator">
+                <h3><i class="fas fa-magic-sparkles"></i> Generate Book Ideas with AI</h3>
+                <div class="ai-controls">
+                    <input type="text" id="aiPrompt" placeholder="Enter a theme, e.g., 'a fantasy story about dragons'">
+                    <button id="generateBtn" class="generate-btn">
+                        <i class="fas fa-wand-magic-sparkles"></i> Generate with AI
+                    </button>
+                </div>
+            </section>
+
+            <!-- Book Form Section -->
+            <section class="book-form">
+                <form id="bookForm">
+                    <fieldset>
+                        <legend><h3><i class="fas fa-plus-circle"></i> Add New Book</h3></legend>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="title">Title *</label>
+                                <input type="text" id="title" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Author *</label>
+                                <input type="text" id="author" name="author" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="isbn">ISBN *</label>
+                                <input type="text" id="isbn" name="isbn" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="genre">Genre *</label>
+                                <select id="genre" name="genre" required>
+                                    <option value="">Select Genre</option>
+                                    <option value="Fiction">Fiction</option>
+                                    <option value="Non-Fiction">Non-Fiction</option>
+                                    <option value="Mystery">Mystery</option>
+                                    <option value="Romance">Romance</option>
+                                    <option value="Science Fiction">Science Fiction</option>
+                                    <option value="Fantasy">Fantasy</option>
+                                    <option value="Biography">Biography</option>
+                                    <option value="History">History</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="publishedYear">Published Year *</label>
+                                <input type="number" id="publishedYear" name="publishedYear" min="1000" max="2025" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pages">Pages *</label>
+                                <input type="number" id="pages" name="pages" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="publisher">Publisher *</label>
+                                <input type="text" id="publisher" name="publisher" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="totalCopies">Total Copies *</label>
+                                <input type="number" id="totalCopies" name="totalCopies" min="0" value="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="availableCopies">Available Copies *</label>
+                                <input type="number" id="availableCopies" name="availableCopies" min="0" value="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rating">Rating</label>
+                                <input type="number" id="rating" name="rating" min="0" max="5" step="0.1" value="0">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="description">Description</label>
+                                <textarea id="description" name="description" rows="3" maxlength="2000"></textarea>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="tags">Tags (comma-separated)</label>
+                                <input type="text" id="tags" name="tags" placeholder="e.g. classic, bestseller">
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-plus"></i> Add Book
+                        </button>
+                    </fieldset>
+                </form>
+            </section>
+
+            <!-- Books List Section -->
+            <section class="books-list">
+                <h3><i class="fas fa-book-reader"></i> Books in Library</h3>
+                <div class="search-controls">
+                    <input type="text" id="searchInput" placeholder="Search by title, author, or description...">
+                    <button id="searchBtn" class="search-btn" aria-label="Search books">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                    <button id="loadBooksBtn" class="load-btn" aria-label="Refresh book list">
+                        <i class="fas fa-sync-alt"></i> Refresh / Show All
+                    </button>
+                </div>
+                <div id="booksContainer" class="books-container" aria-live="polite">
+                    <!-- Loader will be shown here by default -->
+                </div>
+                <div id="pagination" class="pagination"></div>
+            </section>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <p>&copy; 2025 Book Library. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Modal for notifications -->
+    <div id="notificationModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

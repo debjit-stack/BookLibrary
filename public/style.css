@@ -1,0 +1,133 @@
+/* --- Add these new styles to your existing style.css file --- */
+
+.delete-btn {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: #a40e26; /* A darker, more distinct red */
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.delete-btn:hover {
+    background-color: #800000;
+}
+
+/* Styles for confirmation modal buttons */
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-btn {
+    padding: 10px 25px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.modal-btn.confirm {
+    background-color: var(--error-color);
+    color: #fff;
+}
+.modal-btn.confirm:hover {
+    background-color: #c82333;
+}
+
+.modal-btn.cancel {
+    background-color: #6c757d;
+    color: #fff;
+}
+.modal-btn.cancel:hover {
+    background-color: #5a6268;
+}
+
+/* --- Existing CSS --- */
+/* ... (the rest of your style.css file) ... */
+:root {
+    --primary-color: #6a11cb;
+    --secondary-color: #2575fc;
+    --background-color: #f0f2f5;
+    --surface-color: #ffffff;
+    --text-color: #333;
+    --muted-text-color: #6c757d;
+    --border-color: #dee2e6;
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --font-family: 'Poppins', sans-serif;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+body { font-family: var(--font-family); line-height: 1.6; margin: 0; background-color: var(--background-color); color: var(--text-color); }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+h1, h2, h3 { font-weight: 600; }
+.header { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: #fff; padding: 40px 20px; border-radius: var(--border-radius); text-align: center; margin-bottom: 40px; box-shadow: var(--box-shadow); }
+.header h1 { margin: 0; font-size: 2.8em; }
+.header p { margin: 10px 0 0; font-size: 1.2em; opacity: 0.9; }
+.main-content section { background: var(--surface-color); padding: 30px; margin-bottom: 30px; border-radius: var(--border-radius); box-shadow: var(--box-shadow); }
+.main-content h3 { color: var(--primary-color); border-bottom: 2px solid var(--border-color); padding-bottom: 15px; margin-top: 0; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+.ai-generator .ai-controls { display: flex; gap: 15px; flex-wrap: wrap; }
+.ai-controls input { flex-grow: 1; padding: 12px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-size: 1em; }
+.generate-btn { padding: 12px 25px; border: none; border-radius: var(--border-radius); color: #fff; cursor: pointer; font-size: 1em; font-weight: 500; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #ff7e5f, #feb47b); }
+.generate-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); }
+.generate-btn:disabled { background: #ccc; cursor: not-allowed; }
+.book-form fieldset { border: none; padding: 0; margin: 0; }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+.form-group { display: flex; flex-direction: column; }
+.form-group.full-width { grid-column: 1 / -1; }
+.form-group label { margin-bottom: 8px; font-weight: 500; color: var(--muted-text-color); }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: var(--border-radius); box-sizing: border-box; transition: all 0.3s; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2); }
+.submit-btn, .search-btn, .load-btn { padding: 12px 25px; border: none; border-radius: var(--border-radius); color: #fff; cursor: pointer; font-size: 1em; font-weight: 500; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
+.submit-btn { background: var(--primary-color); margin-top: 20px; }
+.submit-btn:hover { background: #5a0eb3; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); }
+.search-controls { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+.search-controls input { flex-grow: 1; padding: 12px; border: 1px solid var(--border-color); border-radius: var(--border-radius); }
+.search-btn { background-color: var(--secondary-color); }
+.load-btn { background-color: var(--success-color); }
+.books-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; min-height: 200px; position: relative; }
+.book-card { background: var(--surface-color); border-radius: var(--border-radius); box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: all 0.3s; display: flex; flex-direction: column; border: 1px solid var(--border-color); }
+.book-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.book-card .book-content { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+.book-card h4 { margin: 0 0 10px; color: var(--primary-color); font-size: 1.25em; }
+.book-card p { margin: 4px 0; color: var(--muted-text-color); font-size: 0.9em; }
+.admin-controls { margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 15px; }
+.copy-control, .ebook-control { display: flex; justify-content: space-between; align-items: center; }
+.admin-controls label { font-weight: 500; color: var(--muted-text-color); }
+.copy-actions { display: flex; align-items: center; gap: 10px; }
+.copy-btn { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--border-color); background-color: #f8f9fa; cursor: pointer; font-size: 1.2em; line-height: 1; transition: background-color 0.2s; }
+.copy-btn:hover { background-color: #e9ecef; }
+.copy-count { font-weight: 600; color: var(--primary-color); }
+.ebook-toggle { padding: 5px 15px; border-radius: 20px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 500; transition: all 0.3s ease; }
+.ebook-toggle.active { background-color: var(--success-color); color: #fff; border-color: var(--success-color); }
+.make-unavailable-btn { margin-top: 15px; width: 100%; padding: 10px; border: none; border-radius: var(--border-radius); background-color: var(--error-color); color: #fff; font-weight: 500; cursor: pointer; transition: background-color 0.2s; }
+.make-unavailable-btn:hover { background-color: #c82333; }
+.make-unavailable-btn.disabled { background-color: #ccc; cursor: not-allowed; }
+.loader { border: 5px solid #f3f3f3; border-top: 5px solid var(--primary-color); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.pagination { display: flex; justify-content: center; padding: 25px 0; }
+.pagination button { margin: 0 5px; padding: 10px 15px; border: 1px solid var(--border-color); background-color: var(--surface-color); color: var(--primary-color); cursor: pointer; border-radius: var(--border-radius); transition: all 0.3s; }
+.pagination button:hover, .pagination button.active { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+.pagination button:disabled { cursor: not-allowed; opacity: 0.6; }
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); animation: fadeIn 0.3s; }
+.modal-content { background-color: var(--surface-color); margin: 15% auto; padding: 30px; border: 1px solid var(--border-color); width: 80%; max-width: 500px; border-radius: var(--border-radius); box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-align: center; position: relative; animation: slideIn 0.3s; }
+.modal-content.success { border-left: 5px solid var(--success-color); }
+.modal-content.error { border-left: 5px solid var(--error-color); }
+.close-button { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.footer { text-align: center; padding: 25px; margin-top: 40px; background: #343a40; color: #fff; border-radius: var(--border-radius); }
+@media (max-width: 768px) { .header h1 { font-size: 2.2em; } .ai-controls { flex-direction: column; } }
+@media (max-width: 480px) { .form-grid, .books-container { grid-template-columns: 1fr; } .modal-content { width: 90%; } }
