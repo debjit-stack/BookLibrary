@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateAuthState = () => {
         const token = localStorage.getItem('token');
         const isLoggedIn = !!token;
-        loginBtn.style.display = isLoggedIn ? 'none' : 'inline-block';
-        logoutBtn.style.display = isLoggedIn ? 'inline-block' : 'none';
+        // loginBtn.style.display = isLoggedIn ? 'none' : 'inline-block';
+        // logoutBtn.style.display = isLoggedIn ? 'inline-block' : 'none';
         loadAndRenderBooks(); // Re-render books to show/hide admin controls
     };
 
@@ -246,17 +246,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    loginBtn.addEventListener('click', () => { authModal.style.display = 'block'; });
-    logoutBtn.addEventListener('click', () => {
-        localStorage.removeItem('token');
-        showNotification('You have been logged out.');
-        updateAuthState();
-    });
-    authCloseBtn.addEventListener('click', () => { authModal.style.display = 'none'; });
-    showRegister.addEventListener('click', (e) => { e.preventDefault(); loginForm.style.display = 'none'; registerForm.style.display = 'block'; });
-    showLogin.addEventListener('click', (e) => { e.preventDefault(); registerForm.style.display = 'none'; loginForm.style.display = 'block'; });
-    loginForm.addEventListener('submit', (e) => { e.preventDefault(); handleAuth('login', document.getElementById('loginUsername').value, document.getElementById('loginPassword').value); });
-    registerForm.addEventListener('submit', (e) => { e.preventDefault(); handleAuth('register', document.getElementById('registerUsername').value, document.getElementById('registerPassword').value); });
+    // loginBtn.addEventListener('click', () => { authModal.style.display = 'block'; });
+    // logoutBtn.addEventListener('click', () => {
+    //     localStorage.removeItem('token');
+    //     showNotification('You have been logged out.');
+    //     updateAuthState();
+    // });
+    // authCloseBtn.addEventListener('click', () => { authModal.style.display = 'none'; });
+    // showRegister.addEventListener('click', (e) => { e.preventDefault(); loginForm.style.display = 'none'; registerForm.style.display = 'block'; });
+    // showLogin.addEventListener('click', (e) => { e.preventDefault(); registerForm.style.display = 'none'; loginForm.style.display = 'block'; });
+    // loginForm.addEventListener('submit', (e) => { e.preventDefault(); handleAuth('login', document.getElementById('loginUsername').value, document.getElementById('loginPassword').value); });
+    // registerForm.addEventListener('submit', (e) => { e.preventDefault(); handleAuth('register', document.getElementById('registerUsername').value, document.getElementById('registerPassword').value); });
 
     searchBtn.addEventListener('click', () => loadAndRenderBooks(1));
     loadBooksBtn.addEventListener('click', () => {

@@ -21,7 +21,14 @@ const bookRoutes = require(path.join(__dirname, 'src', 'routes', 'bookRoutes'));
 const aiRoutes = require(path.join(__dirname, 'src', 'routes', 'aiRoutes'));
 
 // Security middleware
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      "img-src": ["'self'", "placehold.co"],
+    },
+  })
+);
 app.use(compression());
 
 // Rate limiting
