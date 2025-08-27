@@ -37,7 +37,7 @@ const bookSchema = new mongoose.Schema({
   },
   isbn: {
     type: String,
-    unique: true,
+    //unique: true,
     sparse: true, // allows multiple null values
     trim: true,
     validate: {

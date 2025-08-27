@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const res = await fetch(url);
             if (!res.ok) throw new Error('Could not fetch books.');
-            const { success, books, totalPages } = await res.json();
+            const { success, data: { books, pagination: { totalPages } } } = await res.json();
             
             if (success) {
                 booksContainer.innerHTML = books.length ? books.map(book => renderBook(book, isLoggedIn)).join('') : '<p>No books found.</p>';
